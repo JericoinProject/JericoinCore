@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Jericoin Core
+Comment=Jericoin P2P Cryptocurrency
+Exec=jericoin-qt %u
+Terminal=false
+Type=Application
+Icon=jericoin128
+MimeType=x-scheme-handler/jericoin;
+Categories=Office;Finance;
+StartupWMClass=Jericoin-qt
+Name[en_US]=jericoin-qt.desktop

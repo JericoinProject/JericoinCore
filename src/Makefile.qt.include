@@ -1,0 +1,854 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/jericoin-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# jericoin qt core #
+QT_TS = \
+  qt/locale/jericoin_bg.ts \
+  qt/locale/jericoin_ca.ts \
+  qt/locale/jericoin_cs.ts \
+  qt/locale/jericoin_da.ts \
+  qt/locale/jericoin_de.ts \
+  qt/locale/jericoin_en.ts \
+  qt/locale/jericoin_en_GB.ts \
+  qt/locale/jericoin_en_US.ts \
+  qt/locale/jericoin_eo.ts \
+  qt/locale/jericoin_es.ts \
+  qt/locale/jericoin_es_ES.ts \
+  qt/locale/jericoin_fi.ts \
+  qt/locale/jericoin_fr_FR.ts \
+  qt/locale/jericoin_hi_IN.ts \
+  qt/locale/jericoin_hr.ts \
+  qt/locale/jericoin_hr_HR.ts \
+  qt/locale/jericoin_it.ts \
+  qt/locale/jericoin_ja.ts \
+  qt/locale/jericoin_ko_KR.ts \
+  qt/locale/jericoin_lt_LT.ts \
+  qt/locale/jericoin_nl.ts \
+  qt/locale/jericoin_pl.ts \
+  qt/locale/jericoin_pt.ts \
+  qt/locale/jericoin_pt_BR.ts \
+  qt/locale/jericoin_ro_RO.ts \
+  qt/locale/jericoin_ru.ts \
+  qt/locale/jericoin_sk.ts \
+  qt/locale/jericoin_sv.ts \
+  qt/locale/jericoin_tr.ts \
+  qt/locale/jericoin_uk.ts \
+  qt/locale/jericoin_vi.ts \
+  qt/locale/jericoin_zh_CN.ts \
+  qt/locale/jericoin_zh_TW.ts
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/blockexplorer.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/governancepage.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/jericoin/forms/loadingdialog.ui \
+  qt/forms/zpivcontroldialog.ui \
+  qt/jericoin/forms/snackbar.ui \
+  qt/jericoin/forms/navmenuwidget.ui \
+  qt/jericoin/forms/lockunlock.ui \
+  qt/jericoin/forms/expandablebutton.ui \
+  qt/jericoin/forms/receivedialog.ui \
+  qt/jericoin/forms/walletpassworddialog.ui \
+  qt/jericoin/forms/topbar.ui \
+  qt/jericoin/forms/txrow.ui \
+  qt/jericoin/forms/dashboardwidget.ui \
+  qt/jericoin/forms/coincontrolpivwidget.ui \
+  qt/jericoin/forms/addresslabelrow.ui \
+  qt/jericoin/forms/contactdropdownrow.ui \
+  qt/jericoin/forms/mninfodialog.ui \
+  qt/jericoin/forms/optionbutton.ui \
+  qt/jericoin/forms/masternodewizarddialog.ui \
+  qt/jericoin/forms/mnrow.ui \
+  qt/jericoin/forms/masternodeswidget.ui \
+  qt/jericoin/forms/myaddressrow.ui \
+  qt/jericoin/forms/csrow.ui \
+  qt/jericoin/forms/sendchangeaddressdialog.ui \
+  qt/jericoin/forms/sendconfirmdialog.ui \
+  qt/jericoin/forms/sendcustomfeedialog.ui \
+  qt/jericoin/forms/sendchangeaddressdialog.ui \
+  qt/jericoin/forms/sendmultirow.ui \
+  qt/jericoin/forms/send.ui \
+  qt/jericoin/forms/addnewaddressdialog.ui \
+  qt/jericoin/forms/addnewcontactdialog.ui \
+  qt/jericoin/forms/requestdialog.ui \
+  qt/jericoin/forms/receivewidget.ui \
+  qt/jericoin/forms/tooltipmenu.ui \
+  qt/jericoin/forms/addresseswidget.ui \
+  qt/jericoin/forms/defaultdialog.ui \
+  qt/jericoin/forms/denomgenerationdialog.ui \
+  qt/jericoin/forms/privacywidget.ui \
+  qt/jericoin/forms/coldstakingwidget.ui \
+  qt/jericoin/settings/forms/settingsbackupwallet.ui \
+  qt/jericoin/settings/forms/settingsbittoolwidget.ui \
+  qt/jericoin/settings/forms/settingsconsolewidget.ui \
+  qt/jericoin/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/jericoin/settings/forms/settingsfaqwidget.ui \
+  qt/jericoin/settings/forms/settingsinformationwidget.ui \
+  qt/jericoin/settings/forms/settingsmainoptionswidget.ui \
+  qt/jericoin/settings/forms/settingsmultisenddialog.ui \
+  qt/jericoin/settings/forms/settingsmultisendwidget.ui \
+  qt/jericoin/settings/forms/settingssignmessagewidgets.ui \
+  qt/jericoin/settings/forms/settingswalletoptionswidget.ui \
+  qt/jericoin/settings/forms/settingswalletrepairwidget.ui \
+  qt/jericoin/settings/forms/settingswidget.ui \
+  qt/jericoin/forms/welcomecontentwidget.ui \
+  qt/jericoin/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/moc_bitcoinamountfield.cpp \
+  qt/jericoin/moc_jericoingui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_blockexplorer.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_governancepage.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_proposalframe.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/jericoin/moc_loadingdialog.cpp \
+  qt/moc_zpivcontroldialog.cpp \
+  qt/jericoin/moc_pwidget.cpp \
+  qt/jericoin/moc_snackbar.cpp \
+  qt/jericoin/moc_navmenuwidget.cpp \
+  qt/jericoin/moc_lockunlock.cpp \
+  qt/jericoin/moc_expandablebutton.cpp \
+  qt/jericoin/moc_furabstractlistitemdelegate.cpp \
+  qt/jericoin/moc_receivedialog.cpp \
+  qt/jericoin/moc_walletpassworddialog.cpp \
+  qt/jericoin/moc_pfborderimage.cpp \
+  qt/jericoin/moc_topbar.cpp \
+  qt/jericoin/moc_txrow.cpp \
+  qt/jericoin/moc_dashboardwidget.cpp \
+  qt/jericoin/moc_coincontrolpivwidget.cpp \
+  qt/jericoin/moc_addresslabelrow.cpp \
+  qt/jericoin/moc_contactdropdownrow.cpp \
+  qt/jericoin/moc_mninfodialog.cpp \
+  qt/jericoin/moc_optionbutton.cpp \
+  qt/jericoin/moc_coldstakingmodel.cpp \
+  qt/jericoin/moc_mnmodel.cpp \
+  qt/jericoin/moc_masternodewizarddialog.cpp \
+  qt/jericoin/moc_mnrow.cpp \
+  qt/jericoin/moc_masternodeswidget.cpp \
+  qt/jericoin/moc_myaddressrow.cpp \
+  qt/jericoin/moc_csrow.cpp \
+  qt/jericoin/moc_contactsdropdown.cpp \
+  qt/jericoin/moc_sendchangeaddressdialog.cpp \
+  qt/jericoin/moc_sendconfirmdialog.cpp \
+  qt/jericoin/moc_sendcustomfeedialog.cpp \
+  qt/jericoin/moc_sendchangeaddressdialog.cpp \
+  qt/jericoin/moc_sendmultirow.cpp \
+  qt/jericoin/moc_send.cpp \
+  qt/jericoin/moc_addnewaddressdialog.cpp \
+  qt/jericoin/moc_addnewcontactdialog.cpp \
+  qt/jericoin/moc_requestdialog.cpp \
+  qt/jericoin/moc_receivewidget.cpp \
+  qt/jericoin/moc_tooltipmenu.cpp \
+  qt/jericoin/moc_addresseswidget.cpp \
+  qt/jericoin/moc_defaultdialog.cpp \
+  qt/jericoin/moc_denomgenerationdialog.cpp \
+  qt/jericoin/moc_privacywidget.cpp \
+  qt/jericoin/moc_coldstakingwidget.cpp \
+  qt/jericoin/settings/moc_settingsbackupwallet.cpp \
+  qt/jericoin/settings/moc_settingsbittoolwidget.cpp \
+  qt/jericoin/settings/moc_settingsconsolewidget.cpp \
+  qt/jericoin/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/jericoin/settings/moc_settingsfaqwidget.cpp \
+  qt/jericoin/settings/moc_settingsinformationwidget.cpp \
+  qt/jericoin/settings/moc_settingsmainoptionswidget.cpp \
+  qt/jericoin/settings/moc_settingsmultisenddialog.cpp \
+  qt/jericoin/settings/moc_settingsmultisendwidget.cpp \
+  qt/jericoin/settings/moc_settingssignmessagewidgets.cpp \
+  qt/jericoin/settings/moc_settingswalletoptionswidget.cpp \
+  qt/jericoin/settings/moc_settingswalletrepairwidget.cpp \
+  qt/jericoin/settings/moc_settingswidget.cpp \
+  qt/jericoin/moc_welcomecontentwidget.cpp \
+  qt/jericoin/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/jericoin.moc \
+  qt/bitcoinamountfield.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/jericoin/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_jericoin.cpp
+QT_QRC = qt/jericoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_jericoin_locale.cpp
+QT_QRC_LOCALE = qt/jericoin_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/bitcoinamountfield.h \
+  qt/jericoin/jericoingui.h \
+  qt/bitcoinunits.h \
+  qt/blockexplorer.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/governancepage.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/proposalframe.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/jericoin/prunnable.h \
+  qt/jericoin/pfborderimage.h \
+  qt/jericoin/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/zpivcontroldialog.h \
+  qt/jericoin/pwidget.h \
+  qt/jericoin/guitransactionsutils.h \
+  qt/jericoin/snackbar.h \
+  qt/jericoin/navmenuwidget.h \
+  qt/jericoin/lockunlock.h \
+  qt/jericoin/receivedialog.h \
+  qt/jericoin/furlistrow.h \
+  qt/jericoin/furabstractlistitemdelegate.h \
+  qt/jericoin/txviewholder.h \
+  qt/jericoin/qtutils.h \
+  qt/jericoin/expandablebutton.h \
+  qt/jericoin/walletpassworddialog.h \
+  qt/jericoin/topbar.h \
+  qt/jericoin/txrow.h \
+  qt/jericoin/addressholder.h \
+  qt/jericoin/addressfilterproxymodel.h \
+  qt/jericoin/dashboardwidget.h \
+  qt/jericoin/coincontrolpivwidget.h \
+  qt/jericoin/addresslabelrow.h \
+  qt/jericoin/contactdropdownrow.h \
+  qt/jericoin/mninfodialog.h \
+  qt/jericoin/optionbutton.h \
+  qt/jericoin/coldstakingmodel.h \
+  qt/jericoin/mnmodel.h \
+  qt/jericoin/masternodewizarddialog.h \
+  qt/jericoin/mnrow.h \
+  qt/jericoin/masternodeswidget.h \
+  qt/jericoin/myaddressrow.h \
+  qt/jericoin/csrow.h \
+  qt/jericoin/contactsdropdown.h \
+  qt/jericoin/sendchangeaddressdialog.h \
+  qt/jericoin/sendconfirmdialog.h \
+  qt/jericoin/sendcustomfeedialog.h \
+  qt/jericoin/sendchangeaddressdialog.h \
+  qt/jericoin/sendmultirow.h \
+  qt/jericoin/send.h \
+  qt/jericoin/addnewaddressdialog.h \
+  qt/jericoin/addnewcontactdialog.h \
+  qt/jericoin/requestdialog.h \
+  qt/jericoin/receivewidget.h \
+  qt/jericoin/tooltipmenu.h \
+  qt/jericoin/addresseswidget.h \
+  qt/jericoin/defaultdialog.h \
+  qt/jericoin/denomgenerationdialog.h \
+  qt/jericoin/privacywidget.h \
+  qt/jericoin/coldstakingwidget.h \
+  qt/jericoin/settings/settingsbackupwallet.h \
+  qt/jericoin/settings/settingsbittoolwidget.h \
+  qt/jericoin/settings/settingsconsolewidget.h \
+  qt/jericoin/settings/settingsdisplayoptionswidget.h \
+  qt/jericoin/settings/settingsfaqwidget.h \
+  qt/jericoin/settings/settingsinformationwidget.h \
+  qt/jericoin/settings/settingsmainoptionswidget.h \
+  qt/jericoin/settings/settingsmultisenddialog.h \
+  qt/jericoin/settings/settingsmultisendwidget.h \
+  qt/jericoin/settings/settingssignmessagewidgets.h \
+  qt/jericoin/settings/settingswalletoptionswidget.h \
+  qt/jericoin/settings/settingswalletrepairwidget.h \
+  qt/jericoin/settings/settingswidget.h \
+  qt/jericoin/welcomecontentwidget.h \
+  qt/jericoin/splash.h
+
+RES_ICONS = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/automint_active.png \
+  qt/res/icons/automint_inactive.png \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0_16.png \
+  qt/res/icons/connect1_16.png \
+  qt/res/icons/connect2_16.png \
+  qt/res/icons/connect3_16.png \
+  qt/res/icons/connect4_16.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/masternodes.png \
+  qt/res/icons/onion.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/qrcode.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/receive.png \
+  qt/res/icons/receive_dark.png \
+  qt/res/icons/privacy.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/send.png \
+  qt/res/icons/send_dark.png \
+  qt/res/icons/governance.png \
+  qt/res/icons/governance_dark.png \
+  qt/res/icons/staking_active.png \
+  qt/res/icons/staking_inactive.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/trade.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/res/icons/yesvote.png \
+  qt/res/icons/novote.png \
+  qt/res/icons/abstainvote.png \
+  qt/jericoin/res/img/bg-dashboard-banner.png \
+  qt/jericoin/res/img/bg-multi-number-dark.svg \
+  qt/jericoin/res/img/ic-check-locked.svg \
+  qt/jericoin/res/img/ic-nav-address.svg \
+  qt/jericoin/res/img/ic-update.svg \
+  qt/jericoin/res/img/bg-multi-number.svg \
+  qt/jericoin/res/img/ic-check-mint-off.svg \
+  qt/jericoin/res/img/ic-nav-cold-staking.svg \
+  qt/jericoin/res/img/ic-nav-cold-staking-active.svg \
+  qt/jericoin/res/img/ic-nav-dashboard-active.svg \
+  qt/jericoin/res/img/ic-wallet-status-locked.svg \
+  qt/jericoin/res/img/bg-splash.svg \
+  qt/jericoin/res/img/bg-splash.png \
+  qt/jericoin/res/img/ic-check-mint.svg \
+  qt/jericoin/res/img/ic-nav-dashboard-hover.svg \
+  qt/jericoin/res/img/ic-wallet-status-staking.svg \
+  qt/jericoin/res/img/ic-check-peers-off.svg \
+  qt/jericoin/res/img/ic-nav-dashboard.svg \
+  qt/jericoin/res/img/ic-wallet-status-unlocked.svg \
+  qt/jericoin/res/img/ic-check-peers.svg \
+  qt/jericoin/res/img/ic-nav-master-active.svg \
+  qt/jericoin/res/img/ic-watch-password-white.svg \
+  qt/jericoin/res/img/bg-welcome-container.jpg \
+  qt/jericoin/res/img/bg-welcome-container.png \
+  qt/jericoin/res/img/bg-welcome-container.svg \
+  qt/jericoin/res/img/bg-welcome-container@2x.png \
+  qt/jericoin/res/img/bg-welcome-container@3x.png \
+  qt/jericoin/res/img/ic-check-staking-off.svg \
+  qt/jericoin/res/img/ic-nav-master-hover.svg \
+  qt/jericoin/res/img/ic-watch-password.svg \
+  qt/jericoin/res/img/bg-welcome.jpg \
+  qt/jericoin/res/img/bg-welcome.svg \
+  qt/jericoin/res/img/bg-welcome@2x.jpg \
+  qt/jericoin/res/img/bg-welcome@3x.jpg \
+  qt/jericoin/res/img/bg-welcome.png \
+  qt/jericoin/res/img/ic-check-staking.svg \
+  qt/jericoin/res/img/ic-nav-master.svg \
+  qt/jericoin/res/img/img-dashboard-banner.jpg \
+  qt/jericoin/res/img/btn-radio-active.svg \
+  qt/jericoin/res/img/ic-check-sync-off.svg \
+  qt/jericoin/res/img/ic-nav-privacy-active.svg \
+  qt/jericoin/res/img/img-empty-contacts.svg \
+  qt/jericoin/res/img/btn-radio-off.svg \
+  qt/jericoin/res/img/ic-check-sync.png \
+  qt/jericoin/res/img/ic-nav-privacy-hover.svg \
+  qt/jericoin/res/img/img-empty-dark-contacts.svg \
+  qt/jericoin/res/img/ic-contact-arrow-down.svg \
+  qt/jericoin/res/img/ic-contact-arrow-down-white.svg \
+  qt/jericoin/res/img/ic-check-sync.svg \
+  qt/jericoin/res/img/ic-check-faq.svg \
+  qt/jericoin/res/img/ic-nav-privacy.svg \
+  qt/jericoin/res/img/img-empty-dark-error.svg \
+  qt/jericoin/res/img/ic-add-label.svg \
+  qt/jericoin/res/img/ic-pending.svg \
+  qt/jericoin/res/img/ic-check-theme-dark.svg \
+  qt/jericoin/res/img/ic-nav-receive-active.svg \
+  qt/jericoin/res/img/img-empty-dark-masternode.svg \
+  qt/jericoin/res/img/ic-add-liliac.svg \
+  qt/jericoin/res/img/ic-check-theme-light.svg \
+  qt/jericoin/res/img/ic-nav-receive-hover.svg \
+  qt/jericoin/res/img/img-empty-dark-multisend.svg \
+  qt/jericoin/res/img/ic-add-purple.svg \
+  qt/jericoin/res/img/ic-check-white.svg \
+  qt/jericoin/res/img/ic-nav-receive.svg \
+  qt/jericoin/res/img/img-empty-dark-peers.svg \
+  qt/jericoin/res/img/ic-add.svg \
+  qt/jericoin/res/img/ic-check.svg \
+  qt/jericoin/res/img/ic-nav-send-active.svg \
+  qt/jericoin/res/img/img-empty-dark-staking-off.svg \
+  qt/jericoin/res/img/img-empty-dark-staking-on.svg \
+  qt/jericoin/res/img/ic-address-book-grey.svg \
+  qt/jericoin/res/img/ic-chevron-left.svg \
+  qt/jericoin/res/img/ic-nav-send-hover.svg \
+  qt/jericoin/res/img/img-empty-dark-transactions.svg \
+  qt/jericoin/res/img/ic-address-book-white.svg \
+  qt/jericoin/res/img/ic-chevron-right.svg \
+  qt/jericoin/res/img/ic-nav-send.svg \
+  qt/jericoin/res/img/img-empty-error.svg \
+  qt/jericoin/res/img/ic-address-book.svg \
+  qt/jericoin/res/img/ic-clear-liliac.svg \
+  qt/jericoin/res/img/ic-nav-settings-active.svg \
+  qt/jericoin/res/img/img-empty-masternode.svg \
+  qt/jericoin/res/img/ic-address-send-white.svg \
+  qt/jericoin/res/img/ic-clear-purple.svg \
+  qt/jericoin/res/img/ic-nav-settings-hover.svg \
+  qt/jericoin/res/img/img-empty-multisend.svg \
+  qt/jericoin/res/img/ic-address-send.svg \
+  qt/jericoin/res/img/ic-close-white.svg \
+  qt/jericoin/res/img/ic-nav-settings.svg \
+  qt/jericoin/res/img/img-empty-peers.svg \
+  qt/jericoin/res/img/img-empty-privacy.svg \
+  qt/jericoin/res/img/img-empty-privacy-dark.svg \
+  qt/jericoin/res/img/ic-arrow-drop-down-white.svg \
+  qt/jericoin/res/img/ic-close.svg \
+  qt/jericoin/res/img/ic-radio-liliac-on.svg \
+  qt/jericoin/res/img/img-empty-staking-off.svg \
+  qt/jericoin/res/img/ic-arrow-drop-down.svg \
+  qt/jericoin/res/img/ic-coin-piv.svg \
+  qt/jericoin/res/img/ic-receive-off.svg \
+  qt/jericoin/res/img/img-empty-staking-on.svg \
+  qt/jericoin/res/img/ic-arrow-drop-up-white.svg \
+  qt/jericoin/res/img/ic-coin-zpiv.png \
+  qt/jericoin/res/img/ic-receive-on.svg \
+  qt/jericoin/res/img/img-empty-transactions.svg \
+  qt/jericoin/res/img/ic-arrow-drop-up.svg \
+  qt/jericoin/res/img/ic-coin-zpiv.svg \
+  qt/jericoin/res/img/ic-received.svg \
+  qt/jericoin/res/img/img-logo-jericoin.png \
+  qt/jericoin/res/img/ic-arrow-drop-white-down.svg \
+  qt/jericoin/res/img/ic-combo-box.svg \
+  qt/jericoin/res/img/ic-send.svg \
+  qt/jericoin/res/img/img-logo-jericoin@2x.png \
+  qt/jericoin/res/img/ic-arrow-purple-down.svg \
+  qt/jericoin/res/img/ic-connect.svg \
+  qt/jericoin/res/img/ic-submenu-lock.svg \
+  qt/jericoin/res/img/img-logo-jericoin@3x.png \
+  qt/jericoin/res/img/img-logo-jericoin.svg \
+  qt/jericoin/res/img/ic-arrow-right-white.svg \
+  qt/jericoin/res/img/ic-arrow-left-white.svg \
+  qt/jericoin/res/img/ic-arrow-left.svg \
+  qt/jericoin/res/img/ic-copy-liliac.svg \
+  qt/jericoin/res/img/ic-submenu-staking.svg \
+  qt/jericoin/res/img/img-nav-logo-jericoin.png \
+  qt/jericoin/res/img/ic-arrow-right.svg \
+  qt/jericoin/res/img/ic-copy.svg \
+  qt/jericoin/res/img/ic-copy-big.svg \
+  qt/jericoin/res/img/ic-copy-big-white.svg \
+  qt/jericoin/res/img/ic-submenu-unlock.svg \
+  qt/jericoin/res/img/img-nav-logo.png \
+  qt/jericoin/res/img/ic-arrow-white-left.svg \
+  qt/jericoin/res/img/ic-exit.svg \
+  qt/jericoin/res/img/ic-switch-liliac-on.svg \
+  qt/jericoin/res/img/img-nav-logo.svg \
+  qt/jericoin/res/img/ic-arrow-white-right.svg \
+  qt/jericoin/res/img/ic-expand.svg \
+  qt/jericoin/res/img/ic-switch-off.svg \
+  qt/jericoin/res/img/img-qr-test-big.png \
+  qt/jericoin/res/img/ic-check-active.svg \
+  qt/jericoin/res/img/ic-folder.svg \
+  qt/jericoin/res/img/ic-switch-on.svg \
+  qt/jericoin/res/img/img-qr-test.png \
+  qt/jericoin/res/img/ic-check-box.svg \
+  qt/jericoin/res/img/ic-check-box-dark-active.svg \
+  qt/jericoin/res/img/ic-check-box-indeterminate.svg \
+  qt/jericoin/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/jericoin/res/img/ic-label-liliac.svg \
+  qt/jericoin/res/img/ic-transaction-warning.svg \
+  qt/jericoin/res/img/ic-transaction-mint.svg \
+  qt/jericoin/res/img/ic-transaction-mint-inactive.svg \
+  qt/jericoin/res/img/ic-check-cold-staking.svg \
+  qt/jericoin/res/img/ic-check-cold-staking-off.svg \
+  qt/jericoin/res/img/ic-check-cold-staking-enabled.svg \
+  qt/jericoin/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/jericoin/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/jericoin/res/img/img-qr.svg \
+  qt/jericoin/res/img/ic-check-connect-off.svg \
+  qt/jericoin/res/img/ic-label.svg \
+  qt/jericoin/res/img/ic-transaction-received.svg \
+  qt/jericoin/res/img/dark/ic-transaction-received.svg \
+  qt/jericoin/res/img/dark/ic-transaction-warning.svg \
+  qt/jericoin/res/img/dark/ic-transaction-mint.svg \
+  qt/jericoin/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/jericoin/res/img/ic-transaction-received-inactive.svg \
+  qt/jericoin/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/jericoin/res/img/img-welcome-step1.png \
+  qt/jericoin/res/img/ic-check-connect.svg \
+  qt/jericoin/res/img/ic-menu-hover.svg \
+  qt/jericoin/res/img/ic-transaction-sent.svg \
+  qt/jericoin/res/img/ic-transaction-sent-inactive.svg \
+  qt/jericoin/res/img/dark/ic-transaction-sent.svg \
+  qt/jericoin/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/jericoin/res/img/img-welcome-step2.png \
+  qt/jericoin/res/img/ic-check-dark.svg \
+  qt/jericoin/res/img/ic-mint.svg \
+  qt/jericoin/res/img/ic-transaction-staked.svg \
+  qt/jericoin/res/img/ic-transaction-staked-inactive.svg \
+  qt/jericoin/res/img/dark/ic-transaction-staked.svg \
+  qt/jericoin/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/jericoin/res/img/img-welcome-step3.png \
+  qt/jericoin/res/img/ic-check-liliac-on.svg \
+  qt/jericoin/res/img/ic-nav-address-active.svg \
+  qt/jericoin/res/img/ic-unlock-staking.svg \
+  qt/jericoin/res/img/img-welcome-step4.png \
+  qt/jericoin/res/img/ic-check-locked-off.svg \
+  qt/jericoin/res/img/ic-nav-address-hover.svg \
+  qt/jericoin/res/img/ic-update-liliac.svg \
+  qt/jericoin/res/img/ic-arrow-drop-down-purple.svg \
+  qt/jericoin/res/img/ic-arrow-drop-up-purple.svg \
+  qt/jericoin/res/img/ic-check-liliac-indeterminate.svg \
+  qt/jericoin/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/jericoin/res/img/ic-transaction-stake-delegated.svg \
+  qt/jericoin/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/jericoin/res/img/ic-transaction-stake-hot.svg \
+  qt/jericoin/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/jericoin/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/jericoin/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/jericoin/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/jericoin/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/jericoin/res/img/ic-transaction-cs-contract.svg \
+  qt/jericoin/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/jericoin/res/img/ic-check-box-indeterminate.svg \
+  qt/jericoin/res/img/ani-loading-dark.gif \
+  qt/jericoin/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/bitcoinamountfield.cpp \
+  qt/jericoin/jericoingui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/blockexplorer.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/blockexplorer.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/governancepage.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/proposalframe.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/jericoin/loadingdialog.cpp \
+  qt/zpivcontroldialog.cpp \
+  qt/jericoin/pwidget.cpp \
+  qt/jericoin/guitransactionsutils.cpp \
+  qt/jericoin/snackbar.cpp \
+  qt/jericoin/navmenuwidget.cpp \
+  qt/jericoin/lockunlock.cpp \
+  qt/jericoin/receivedialog.cpp \
+  qt/jericoin/furabstractlistitemdelegate.cpp \
+  qt/jericoin/txviewholder.cpp \
+  qt/jericoin/qtutils.cpp \
+  qt/jericoin/expandablebutton.cpp \
+  qt/jericoin/walletpassworddialog.cpp \
+  qt/jericoin/topbar.cpp \
+  qt/jericoin/txrow.cpp \
+  qt/jericoin/addressholder.cpp \
+  qt/jericoin/addressfilterproxymodel.cpp \
+  qt/jericoin/dashboardwidget.cpp \
+  qt/jericoin/coincontrolpivwidget.cpp \
+  qt/jericoin/addresslabelrow.cpp \
+  qt/jericoin/contactdropdownrow.cpp \
+  qt/jericoin/contactsdropdown.cpp \
+  qt/jericoin/optionbutton.cpp \
+  qt/jericoin/mninfodialog.cpp \
+  qt/jericoin/coldstakingmodel.cpp \
+  qt/jericoin/mnmodel.cpp \
+  qt/jericoin/masternodewizarddialog.cpp \
+  qt/jericoin/mnrow.cpp \
+  qt/jericoin/masternodeswidget.cpp \
+  qt/jericoin/myaddressrow.cpp \
+  qt/jericoin/csrow.cpp \
+  qt/jericoin/sendchangeaddressdialog.cpp \
+  qt/jericoin/sendconfirmdialog.cpp \
+  qt/jericoin/sendcustomfeedialog.cpp \
+  qt/jericoin/sendchangeaddressdialog.cpp \
+  qt/jericoin/sendmultirow.cpp \
+  qt/jericoin/send.cpp \
+  qt/jericoin/addnewaddressdialog.cpp \
+  qt/jericoin/addnewcontactdialog.cpp \
+  qt/jericoin/requestdialog.cpp \
+  qt/jericoin/receivewidget.cpp \
+  qt/jericoin/tooltipmenu.cpp \
+  qt/jericoin/addresseswidget.cpp \
+  qt/jericoin/defaultdialog.cpp \
+  qt/jericoin/denomgenerationdialog.cpp \
+  qt/jericoin/privacywidget.cpp \
+  qt/jericoin/coldstakingwidget.cpp \
+  qt/jericoin/settings/settingsbackupwallet.cpp \
+  qt/jericoin/settings/settingsbittoolwidget.cpp \
+  qt/jericoin/settings/settingsconsolewidget.cpp \
+  qt/jericoin/settings/settingsdisplayoptionswidget.cpp \
+  qt/jericoin/settings/settingsfaqwidget.cpp \
+  qt/jericoin/settings/settingsinformationwidget.cpp \
+  qt/jericoin/settings/settingsmainoptionswidget.cpp \
+  qt/jericoin/settings/settingsmultisenddialog.cpp \
+  qt/jericoin/settings/settingsmultisendwidget.cpp \
+  qt/jericoin/settings/settingssignmessagewidgets.cpp \
+  qt/jericoin/settings/settingswalletoptionswidget.cpp \
+  qt/jericoin/settings/settingswalletrepairwidget.cpp \
+  qt/jericoin/settings/settingswidget.cpp \
+  qt/jericoin/welcomecontentwidget.cpp \
+  qt/jericoin/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png \
+  qt/res/images/jericoin_logo_horizontal.png \
+  qt/res/images/downArrow_dark.png \
+  qt/res/images/downArrow_small_dark.png \
+  qt/res/images/downArrow_small.png \
+  qt/res/images/upArrow_small_dark.png \
+  qt/res/images/upArrow_small.png \
+  qt/res/images/leftArrow_small_dark.png \
+  qt/res/images/rightArrow_small_dark.png \
+  qt/res/images/qtreeview_selected.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/jericoin/res/css/style_dark.css \
+  qt/jericoin/res/css/style_light.css
+
+RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+BITCOIN_RC = qt/res/jericoin-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_jericoin_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# jericoin-qt binary #
+qt_jericoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_jericoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_jericoin_qt_SOURCES = qt/jericoin.cpp
+if TARGET_DARWIN
+  qt_jericoin_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_jericoin_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_jericoin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_jericoin_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_jericoin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_jericoin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_jericoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_jericoin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/jericoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/jericoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/jericoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/jericoin_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name jericoin_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name jericoin $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_jericoin_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+jericoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_jericoin_qt_OBJECTS) qt/jericoin-qt$(EXEEXT) $(LIBBITCOINQT)
+
+jericoin_qt : qt/jericoin-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

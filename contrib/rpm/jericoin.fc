@@ -1,0 +1,8 @@
+/usr/bin/jericoin-cli		--	gen_context(system_u:object_r:jericoin_exec_t,s0)
+/usr/sbin/jericoind		--	gen_context(system_u:object_r:jericoin_exec_t,s0)
+/usr/lib(64)?/jericoin/jericoind		--	gen_context(system_u:object_r:jericoin_exec_t,s0)
+
+/etc/jericoin(/.*)?		gen_context(system_u:object_r:jericoin_conf_t,s0)
+/var/lib/jericoin(/.*)?		gen_context(system_u:object_r:jericoin_var_lib_t,s0)
+
+(/var)?/run/jericoind(/.*)?   gen_context(system_u:object_r:jericoin_var_run_t,s0)

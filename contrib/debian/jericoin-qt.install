@@ -1,0 +1,6 @@
+usr/local/bin/jericoin-qt usr/bin
+share/pixmaps/jericoin32.xpm usr/share/pixmaps
+share/pixmaps/jericoin16.xpm usr/share/pixmaps
+share/pixmaps/jericoin128.png usr/share/pixmaps
+debian/jericoin-qt.desktop usr/share/applications
+debian/jericoin-qt.protocol usr/share/kde4/services/

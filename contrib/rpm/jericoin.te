@@ -1,0 +1,81 @@
+policy_module(jericoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type jericoin_t;
+type jericoin_exec_t;
+init_daemon_domain(jericoin_t, jericoin_exec_t)
+
+permissive jericoin_t;
+
+type jericoin_initrc_exec_t;
+init_script_file(jericoin_initrc_exec_t)
+
+type jericoin_conf_t;
+files_type(jericoin_conf_t)
+
+type jericoin_var_lib_t;
+files_type(jericoin_var_lib_t)
+
+type jericoin_var_run_t;
+files_type(jericoin_var_run_t)
+
+type jericoin_port_t;
+corenet_port(jericoin_port_t)
+
+########################################
+#
+# jericoin local policy
+#
+allow jericoin_t self:process { fork };
+
+allow jericoin_t self:fifo_file rw_fifo_file_perms;
+allow jericoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(jericoin_t, jericoin_conf_t, jericoin_conf_t)
+manage_files_pattern(jericoin_t, jericoin_conf_t, jericoin_conf_t)
+
+manage_dirs_pattern(jericoin_t, jericoin_var_lib_t, jericoin_var_lib_t)
+manage_files_pattern(jericoin_t, jericoin_var_lib_t, jericoin_var_lib_t)
+files_var_lib_filetrans(jericoin_t, jericoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(jericoin_t, jericoin_var_run_t, jericoin_var_run_t)
+manage_files_pattern(jericoin_t, jericoin_var_run_t, jericoin_var_run_t)
+
+sysnet_dns_name_resolve(jericoin_t)
+corenet_all_recvfrom_unlabeled(jericoin_t)
+
+allow jericoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(jericoin_t)
+corenet_tcp_sendrecv_generic_node(jericoin_t)
+corenet_tcp_sendrecv_all_ports(jericoin_t)
+corenet_tcp_bind_generic_node(jericoin_t)
+
+gen_require(`
+    type jericoin_port_t;
+')
+allow jericoin_t jericoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type jericoin_port_t;
+')
+allow jericoin_t jericoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(jericoin_t)
+
+files_read_etc_files(jericoin_t)
+
+miscfiles_read_localization(jericoin_t)
+
+sysnet_dns_name_resolve(jericoin_t)
+
+allow jericoin_t jericoin_exec_t:file execute_no_trans;
+allow jericoin_t self:process setsched;
+corecmd_exec_ls(jericoin_t)
+corenet_tcp_connect_http_port(jericoin_t)
+dev_read_urand(jericoin_t)
+fs_getattr_xattr_fs(jericoin_t)
+kernel_read_system_state(jericoin_t)

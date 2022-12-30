@@ -1,0 +1,16 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Jericoin Core
+Comment=Jericoin Core QT test network
+GenericName=Jericoin Digital Currency QT client testnet network
+Exec=jericoin-core.qt-testnet %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/jericoin_testnet.png
+MimeType=x-scheme-handler/piv;
+Categories=X-Office;X-Finance;
+Keywords=internet;jericoin;zpiv;tpiv;core;wallet;qt;testnet;snap;launchpad;crypto;digital;currency;coin;token;zerocoin;
+Version=1.0
+Name[en_US]=jericoin-qt_testnet.desktop
