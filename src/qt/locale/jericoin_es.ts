@@ -6073,8 +6073,8 @@ Jericoin Core Wallet</translation>
         <translation>Debes especificar un masternodeprivkey en la configuración. Por favor mira la documentación por ayuda.</translation>
     </message>
     <message>
-        <source>(3094 could be used only on mainnet)</source>
-        <translation>(3094 puede ser utilizado solo en mainnet)</translation>
+        <source>(31357 could be used only on mainnet)</source>
+        <translation>(31357 puede ser utilizado solo en mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6085,8 +6085,8 @@ Jericoin Core Wallet</translation>
         <translation>(predeterminado: 1)</translation>
     </message>
     <message>
-        <source>(must be 3094 for mainnet)</source>
-        <translation>(debe ser 3094 para un mainnet)</translation>
+        <source>(must be 31357 for mainnet)</source>
+        <translation>(debe ser 31357 para un mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

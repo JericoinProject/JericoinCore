@@ -6137,8 +6137,8 @@ Jericoin Core Portemonnee</translation>
         <translation>Je moet een masternodeprivkey opgeven in de configuratie. Raadpleeg de documentatie voor hulp.</translation>
     </message>
     <message>
-        <source>(3094 could be used only on mainnet)</source>
-        <translation>(3094 kan alleen op mainnet worden gebruikt)</translation>
+        <source>(31357 could be used only on mainnet)</source>
+        <translation>(31357 kan alleen op mainnet worden gebruikt)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6149,8 +6149,8 @@ Jericoin Core Portemonnee</translation>
         <translation>(standaard: 1)</translation>
     </message>
     <message>
-        <source>(must be 3094 for mainnet)</source>
-        <translation>(moet 3094 voor mainnet zijn)</translation>
+        <source>(must be 31357 for mainnet)</source>
+        <translation>(moet 31357 voor mainnet zijn)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
