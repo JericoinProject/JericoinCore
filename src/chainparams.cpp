@@ -266,6 +266,9 @@ public:
         vSeeds.push_back(CDNSSeedData("46.249.204.119", "46.249.204.119"));
 	vSeeds.push_back(CDNSSeedData("185.196.101.209", "185.196.101.209"));    // Secondary DNS Seeder 
 	vSeeds.push_back(CDNSSeedData("198.23.60.195", "198.23.60.195"));    // Primery DNS Seeder 
+        vSeeds.push_back(CDNSSeedData("communityNode01", "45.77.153.55"));
+        vSeeds.push_back(CDNSSeedData("communityNode02", "108.61.149.178"));
+        vSeeds.push_back(CDNSSeedData("communityNode03", "149.28.51.213"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 43); // 
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 44); // 
