@@ -8,7 +8,7 @@ Discord https://discord.gg/xuEVagA8AT
 <br><br><strong> Coin Specs </strong>
 
 <ul>
-  <li>Algorithm : QUARK</li>
+  <li>Algorithm : sha256csm</li>
   <li>Ticker : JHL
   <li>Pre-mine : 100,000</li>
   <li>Max. Supply : 700,000,000</li>
