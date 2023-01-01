@@ -6132,8 +6132,8 @@ Hoşgeldiniz</translation>
         <translation>Konfigürasyonda bir masternodeprivkey belirlemelisiniz.  Lütfen dokümantasyona bakınız.</translation>
     </message>
     <message>
-        <source>(3094 could be used only on mainnet)</source>
-        <translation>(3094 sadece mainnet üzerinde kullanılabilir)</translation>
+        <source>(31357 could be used only on mainnet)</source>
+        <translation>(31357 sadece mainnet üzerinde kullanılabilir)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6144,8 +6144,8 @@ Hoşgeldiniz</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 3094 for mainnet)</source>
-        <translation>(mainnet için 3094 olmalıdır)</translation>
+        <source>(must be 31357 for mainnet)</source>
+        <translation>(mainnet için 31357 olmalıdır)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

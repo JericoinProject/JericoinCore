@@ -253,10 +253,10 @@ QT_TRANSLATE_NOOP("jericoin-core", ""
 QT_TRANSLATE_NOOP("jericoin-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("jericoin-core", "(3094 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("jericoin-core", "(31357 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("jericoin-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("jericoin-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("jericoin-core", "(must be 3094 for mainnet)"),
+QT_TRANSLATE_NOOP("jericoin-core", "(must be 31357 for mainnet)"),
 QT_TRANSLATE_NOOP("jericoin-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("jericoin-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("jericoin-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

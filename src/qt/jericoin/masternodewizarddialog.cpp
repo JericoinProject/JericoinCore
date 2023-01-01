@@ -60,7 +60,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
     setCssSubtitleScreen(ui->labelSubtitleAddressIp);
 
     ui->lineEditIpAddress->setPlaceholderText("e.g 18.255.255.255");
-    ui->lineEditPort->setPlaceholderText("e.g 3094");
+    ui->lineEditPort->setPlaceholderText("e.g 31357");
     initCssEditLine(ui->lineEditIpAddress);
     initCssEditLine(ui->lineEditPort);
     ui->stackedWidget->setCurrentIndex(pos);
@@ -69,7 +69,7 @@ MasterNodeWizardDialog::MasterNodeWizardDialog(WalletModel *model, QWidget *pare
         ui->lineEditPort->setEnabled(false);
         ui->lineEditPort->setText("83696");
     } else {
-        ui->lineEditPort->setText("3094");
+        ui->lineEditPort->setText("31357");
     }
 
     // Confirm icons
@@ -282,7 +282,7 @@ bool MasterNodeWizardDialog::createMN(){
                 if (lineCopy.size() == 0) {
                     lineCopy = "# Masternode config file\n"
                                "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index\n"
-                               "# Example: mn1 127.0.0.2:3094 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0"
+                               "# Example: mn1 127.0.0.2:31357 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0"
                                "#";
                 }
                 lineCopy += "\n";
