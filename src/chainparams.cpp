@@ -83,12 +83,14 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (601, uint256("0x00000000004e9575cf3289b1ba42565539ebf165d0081109c9455f2d732c5970"))
     (1303, uint256("0x00000000008b615726f88980c4ec31363f2ba2a27ce512b7b13b4e844eea813f"))
     (1932, uint256("0x00000000004cbbc60f5c3495acfcf013a4acd5fff68ca094297adcf27334ede0"))
-    (2021, uint256("0x0000000000a12f010b0612626692334d7a666796ba6e5d033ba76c5636d85d9a"));
+    (2021, uint256("0x0000000000a12f010b0612626692334d7a666796ba6e5d033ba76c5636d85d9a"))
+    (4506, uint256("0x00000000000179a4d69bce8b73b5788fd72a7ceb8731b8f24e5c67207a7e5156"))
+    (5073, uint256("0x0000000000018fbe5ae039ce63c4933f22f651092211811db6a2de0f5794a609"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1672513424, // * UNIX timestamp of last checkpoint block
-    2244,          // * total number of transactions between genesis and last checkpoint
+    1672702350, // * UNIX timestamp of last checkpoint block
+    13693,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1.000000        // * estimated number of transactions per day after checkpoint
 };
@@ -199,6 +201,9 @@ public:
         nMaxMoneyOut = 700000000 * COIN;
         nMinColdStakingAmount = 1 * COIN;
 
+        nEnforceNewSporkKey = 1672732800; // Tuesday January 3rd, 2023 03:00 AM GMT+0000 -> must use the new spork key 
+        nRejectOldSporkKey = 1672754400; // Tuesday January 3rd 2023 09:00 AM GMT+0000 -> Fully reject old spork key 
+
         /** Height or Time Based Activations **/
         nLastPOWBlock = 300000;
         nJericoinBadBlockTime = 4070908800; // Skip nBit validation of Block 259201 per PR #915
@@ -266,6 +271,7 @@ public:
         vSeeds.push_back(CDNSSeedData("46.249.204.119", "46.249.204.119"));
 	vSeeds.push_back(CDNSSeedData("185.196.101.209", "185.196.101.209"));    // Secondary DNS Seeder 
 	vSeeds.push_back(CDNSSeedData("198.23.60.195", "198.23.60.195"));    // Primery DNS Seeder 
+        vSeeds.push_back(CDNSSeedData("46.249.204.160", "46.249.204.160"));
         vSeeds.push_back(CDNSSeedData("communityNode01", "45.77.153.55"));
         vSeeds.push_back(CDNSSeedData("communityNode02", "108.61.149.178"));
         vSeeds.push_back(CDNSSeedData("communityNode03", "149.28.51.213"));
@@ -292,7 +298,8 @@ public:
 
         nPoolMaxTransactions = 3;
         nBudgetCycleBlocks = 43200; //!< Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-        strSporkPubKey = "04f06241e520c284f68bb70b5d41d68661bb628970e0ee26253d6a94073eddfe90dea4853c410e048e1050f8bb9bdc194272f7dfda3086fa45420863de21a74dbc";
+        strSporkPubKey = "02091e21ee36175ebe6b85689b434fff658b8269736d5142c14eaa73c73704416c";
+	strSporkPubKeyOld = "04f06241e520c284f68bb70b5d41d68661bb628970e0ee26253d6a94073eddfe90dea4853c410e048e1050f8bb9bdc194272f7dfda3086fa45420863de21a74dbc";
         strObfuscationPoolDummyAddress = "";
         nStartMasternodePayments = 1672391530;
 
