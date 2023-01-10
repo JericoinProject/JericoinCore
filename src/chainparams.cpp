@@ -205,7 +205,7 @@ public:
         nRejectOldSporkKey = 1672754400; // Tuesday January 3rd 2023 09:00 AM GMT+0000 -> Fully reject old spork key 
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 300000;
+        nLastPOWBlock = 30000;
         nJericoinBadBlockTime = 4070908800; // Skip nBit validation of Block 259201 per PR #915
         nJericoinBadBlocknBits = 0x00; // Skip nBit validation of Block 259201 per PR #915
         nModifierUpdateBlock = 495;
